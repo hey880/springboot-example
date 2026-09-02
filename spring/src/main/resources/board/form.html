@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.thymeleaf.org">
+<body>
+    <h1>게시글 입력</h1>
+    <!-- 새글이면 /boards, 수정이면 /boards/{id}/edit 주소로 전송한다. -->
+    <form th:action="${board.id == null} ? @{/boards} : @{/boards/{id}/edit(id=${board.id})}"
+          th:object="{$board}" method="post"> <!-- Form에서 사용할 객체를 board로 지정한다. -->
+        <p>제목: <input type="text" th:field="*{title}"></p> <!--제목 입력 칸과 title 필드를 연결-->
+        <p>제목: <input type="text" th:field="*{writer}"></p> <!--작성자 입력 칸과 writer 필드를 연결-->
+        <p>제목: <input type="text" th:field="*{content}"></textarea></p> <!--내용 입력 칸과 content 필드를 연결-->
+        <button type="submint">저장</button>
+    </form>
+
+    <p><a th:href="@{/board}">목록으로</a></p>
+</body>
+</html>

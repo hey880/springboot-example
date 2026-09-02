@@ -1,0 +1,41 @@
+plugins { // Java, Spring Boot Gradle 플러그인 설정
+	id 'java'
+	id 'org.springframework.boot' version '4.1.1' // Spring Boot 버전을 4.1.1로 지정
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.study'
+version = '0.0.1-SNAPSHOT'
+
+java { // Java Toolchain을 이용해서 Java 21 기준으로 컴파일 하도록 설정
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral() // 의존성 라이브러리를 Maven Central 저장소에서 내려받도록 설정
+}
+
+dependencies {
+	// spring-boot-starter-thymeleaf는 Thymeleaf 화면 템플릿을 사용할 수 있게 해준다.
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	// spring-boot-starter-webmvc는 Spring MVC와 내장 Tomcat을 포함
+	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	// @Valid, @NotBlank, @Email 같은 검증 기능을 사용하기 위한 의존성.
+	// Spring Boot 4.x에서는 검증 기능을 사용하려면 spring-boot-starter-validation을 명시적으로 추가하는 것이 좋다.
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc' // JdbcTemplate을 사용하기 위한 JDBC 스타터
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client' // mariadb database에 접속하기 위한 JDBC 드라이버를 실행 시점에 사용한다.
+	// DevTools는 개발 중 서버 재시작과 변경 감지를 편리하게 해준다.
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	// 테스트 코드를 작성할 때 필요한 기본 테스트 라이브러리
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-thymeleaf-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

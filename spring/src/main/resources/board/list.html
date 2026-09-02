@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 목록</title>
+</head>
+<body>
+    <h1>게시판 목록</h1>
+
+    <p><a th:href="@{/boards/new}">글쓰기</a></p> <!--글쓰기 페이지로 이동-->
+    
+    <table border="1">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+        </tr>
+        <!--boards 목록을 하나씩 꺼내서 board 변수에 담는다.-->
+        <tr th:each="board : ${boards}">
+            <td th:text="${board.id}">1</td>
+            <td>
+                <a th:href="@{/boards/{id}(id=${board.id})}" th:text="${board.title}">제목</a>
+            </td>
+            <!--작성자, 작성일 출력-->
+            <td th:text="${board.writer}">작성자</td>
+            <td th:text="${board.createdAt}">작성일</td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <h1>학습 목록</h1>
+    <ul>
+        <!-- each는 목록 데이터를 하나씩 꺼내서 반복한다. -->
+        <!-- item : ${items}는 items 목록에서 값을 하나씩 꺼내서 item 변수에 담는다는 뜻. -->
+        <li th:each="item : ${items}" th:text="${item}">항목</li>
+    </ul>
+</body>
+</html>
