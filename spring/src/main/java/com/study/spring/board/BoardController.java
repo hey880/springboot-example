@@ -43,6 +43,12 @@ public class BoardController {
     }
 
     @PostMapping
+    public String create(Board board) {
+        boardDao.save(board);
+        return "redirect:/boards";
+    }
+
+    @GetMapping("/{id}/edit")
     public String editForm(@PathVariable Long id, Model model) {
         model.addAttribute("board", boardDao.findById(id));
         return "board/form";

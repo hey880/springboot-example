@@ -26,17 +26,35 @@ public class Board {
         this.createdAt = createdAt;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
         return content;
     }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public String getWriter() {
         return writer;
     }
 
-    // 원래는 getter, setter를 모두 작성하는데 여기서는 생략
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
 }
